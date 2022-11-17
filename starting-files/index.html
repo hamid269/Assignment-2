@@ -2,19 +2,41 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Assignment 2 Playlist</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='css/a2css' rel='stylesheet' type='text/css'>
+    <link href='css/a2css.css' rel='stylesheet'>
 
+    <script src="artists.json"></script>
+    <script src="sample-songs.json"></script>
+    <script src="genres.json"></script>
     <script src="js/assign2.js"></script>
 </head>
 
 <body>
     <p> Group Name: Hoomer Amid, Jameson Watson</p>
+    <aside>
+
+    </aside>
+    <section id="allSongs">
+        <table class="allSongsTable">
+            <tr>
+                <th>Title<input type="radio" id="titleRadioButton" /></th>
+                <th>Artist<input type="radio" id="artistRadioButton" /></th>
+                <th>Year<input type="radio" id="yearRadioButton" /></th>
+                <th>Genre<input type="radio" id="genreRadioButton" /></th>
+                <th>Popularity<input type="radio" id="popRadioButton" /></th>
+            </tr>
+        </table>
+    </section>
+
+
+    <section id="singleSong" class="hidden">
+    </section>
+
+    <section id="playlist" class="hidden">
+    </section>
 </body>
-
-
 </html>
 <footer> </footer>
