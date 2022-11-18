@@ -1,21 +1,19 @@
-.hidden{
-    display:none;
+hidden {
+    display: none;
 }
+
 table {
-    width: 100%;
+    color: black;
 }
-table, th{
-    color:white;
-    background-color:black;
-    border: 1px solid;
+
+#aside {
+    border: 2px solid black;
 }
-table tr{
-    background-color:white;
+
+#result {
+    border: 2px solid black;
 }
-.songs{
-    color:white;
-    background-color:white;
-}
-table tr:nth-child(odd){
-    background-color: aquamarine;
+
+footer {
+    justify-items: center;
 }
