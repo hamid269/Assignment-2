@@ -1,0 +1,21 @@
+.hidden{
+    display:none;
+}
+table {
+    width: 100%;
+}
+table, th{
+    color:white;
+    background-color:black;
+    border: 1px solid;
+}
+table tr{
+    background-color:white;
+}
+.songs{
+    color:white;
+    background-color:white;
+}
+table tr:nth-child(odd){
+    background-color: aquamarine;
+}

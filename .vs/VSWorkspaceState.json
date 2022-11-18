@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\instructions",
+    "\\starting-files",
+    "\\starting-files\\css"
   ],
+  "SelectedNode": "\\starting-files\\css\\a2css.css",
   "PreviewInSolutionExplorer": false
 }
