@@ -2,11 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <title>Assignment 2 Playlist</title>
-
+    <title>Assignment 2</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='css/a2css.css' rel='stylesheet'>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Search Page</title>
+    <link rel="stylesheet" href="css/a2css.css">
 
     <script src="artists.json"></script>
     <script src="sample-songs.json"></script>
@@ -15,9 +21,9 @@
 </head>
 
 <body>
-    <p> Group Name: Hoomer Amid, Jameson Watson</p>
-    <aside>
-
+    <!-- <p> Group Name: Hoomer Amid, Jameson Watson</p>
+    <aside class="search">
+        Basic Song Search
     </aside>
     <section id="allSongs">
         <table class="allSongsTable">
@@ -36,7 +42,96 @@
     </section>
 
     <section id="playlist" class="hidden">
-    </section>
+    </section> -->
+    <div class="row">
+        <div class="col s3" id="aside">
+            <span class="flow-text"> Basic Search</span>
+            <form action="#">
+                <p>
+                    <label>
+                    <input name="group1" type="radio"  />
+                    <span>Title</span>
+                    <input type="box">
+                  </label>
+                </p>
+                <p>
+                    <label>
+                    <input name="group1" type="radio" />
+                    <span>Artist</span>
+                    <input type="dropdown">
+                  </label>
+                </p>
+                <p>
+                    <label>
+                    <input  name="group1" type="radio"  />
+                    <span>Genre</span>
+                    <input type="dropdown">
+                  </label>
+                </p>
+                <div class="row">
+                    <div class="col s6">
+                        <a class="waves-effect waves-light btn">Clear</a>
+                    </div>
+                    <div class="col s6">
+                        <a class="waves-effect waves-light btn">Filter</a>
+                    </div>
+                </div>
+            </form>
+
+
+
+        </div>
+        <div class="col s1"></div>
+        <div class="col s8" id="result">
+            <span class="flow-text">Browse/Results</span>
+            <div class="row">
+                <div class="col s3">
+                    <span>
+Title
+                    </span>
+                </div>
+                <div class="col s2">
+                    <span>
+                        Artist
+                    </span>
+                </div>
+                <div class="col s2">
+                    <span>
+                        Year
+                    </span>
+                </div>
+                <div class="col s2">
+                    <span>
+                        Genre
+                    </span>
+                </div>
+                <div class="col s2">
+                    <span>
+                        Popularity
+                    </span>
+                </div>
+                <div class="col s1">
+                    add
+                </div>
+
+            </div>
+
+
+        </div>
+
 </body>
+
+
 </html>
-<footer> </footer>
+<footer>
+    COMP3512F2022<br> Assignment 2
+    <a href='https://github.com/hamid269/Comp3512f2022Asg2'>Github Repository </a><br>
+    </div>
+    <br>
+    <div class="Names">Contributors:<br>
+        <a href='https://github.com/'>Jameson Watson</a><br>
+        <a href='https://github.com/hamid269'> Hoomer Amid</a><br>
+    </div>
+</footer>a href='https://github.com/hamid269'> Hoomer Amid</a><br>
+</div>
+</footer>

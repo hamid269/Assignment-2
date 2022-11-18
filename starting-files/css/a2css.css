@@ -1,7 +1,19 @@
-hidden{
-    display:none;
+hidden {
+    display: none;
 }
 
-table{
-    color:black;
+table {
+    color: black;
+}
+
+#aside {
+    border: 2px solid black;
+}
+
+#result {
+    border: 2px solid black;
+}
+
+footer {
+    justify-items: center;
 }
