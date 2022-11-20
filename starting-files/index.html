@@ -7,27 +7,128 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <!--Compiled and minified JavaScript -->
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+    <title>Search Page</title>
+    <link rel="stylesheet" href="css/a2css.css">
 
+    <script src="artists.json"></script>
+    <script src="sample-songs.json"></script>
+    <script src="genres.json"></script>
     <script src="js/assign2.js"></script>
-
 </head>
 
 <body>
-    <p> Group Name: Hoomer Amid, Jameson Watson</p>
+
+    <aside class="search">
+        Basic Song Search
+    </aside>
+    <section id="allSongs">
+       
+    <table class="allSongsTable">
+        <tr>
+            <th>Title<input type="radio" id="titleRadioButton" /></th>
+            <th>Artist<input type="radio" id="artistRadioButton" /></th>
+            <th>Year<input type="radio" id="yearRadioButton" /></th>
+            <th>Genre<input type="radio" id="genreRadioButton" /></th>
+            <th>Popularity<input type="radio" id="popRadioButton" /></th>
+        </tr>
+    </table>
+      
+    </section>
+    <section id="singleSong" class="hidden">
+    </section>
+    <section id="playlist" class="hidden">
+    </section>
+    
+    <div class="row">
+        <div class="col s3" id="aside">
+            <span class="flow-text"> Basic Search</span>
+            <form action="#">
+                <p>
+                    <label>
+                        <input name="group1" type="radio" />
+                        <span>Title</span>
+                        <input name="title" id="title" />
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input name="group1" type="radio" />
+                        <span>Artist</span>
+                        <select name ="artistSelect" id="artistSelect"></select>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input name="group1" type="radio" />
+                        <span>Genre</span>
+                        <select name="genreSelect" id="genreSelect"></select>
+                    </label>
+                </p>
+                <div class="row">
+                    <div class="col s6">
+                        <a class="waves-effect waves-light btn">Clear</a>
+                    </div>
+                    <div class="col s6">
+                        <a class="waves-effect waves-light btn">Filter</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+       
+    <div class="col s1"></div>
+    <div class="col s8" id="result">
+        <!--
+        <span class="flow-text">Browse/Results</span>
+        <div class="row">
+            <div class="col s3">
+                <span>
+                    Title
+                </span>
+                <input type="checkbox" />
+            </div>
+            <div class="col s2">
+                <span>
+                    Artist
+                </span>
+            </div>
+            <div class="col s2">
+                <span>
+                    Year
+                </span>
+            </div>
+            <div class="col s2">
+                <span>
+                    Genre
+                </span>
+            </div>
+            <div class="col s2">
+                <span>
+                    Popularity
+                </span>
+            </div>
+            <div class="col s1">
+                add
+            </div>
+
+        </div>
+
+
+    </div>
+            -->
 </body>
 
-
+    <footer>
+        COMP3512F2022<br> Assignment 2
+        <a href='https://github.com/hamid269/Comp3512f2022Asg2'>Github Repository </a><br>
+        <br>
+        <div class="Names">
+            Contributors:<br>
+            <a href='https://github.com/'>Jameson Watson</a><br>
+            <a href='https://github.com/hamid269'> Hoomer Amid</a><br>
+        </div>
+    </footer>
 </html>
-<footer>
-    COMP3512F2022<br> Assignment 2
-    <a href='https://github.com/hamid269/Comp3512f2022Asg2'>Github Repository </a><br>
-    </div>
-    <br>
-    <div class="Names">Contributors:<br>
-        <a href='https://github.com/'>Jameson Watson</a><br>
-        <a href='https://github.com/hamid269'> Hoomer Amid</a><br>
-    </div>
-</footer>a href='https://github.com/hamid269'> Hoomer Amid</a><br>
-</div>
-</footer>
