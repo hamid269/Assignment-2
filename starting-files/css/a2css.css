@@ -15,5 +15,8 @@ table {
 }
 
 footer {
-    justify-items: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
 }
