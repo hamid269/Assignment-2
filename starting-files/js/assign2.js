@@ -48,15 +48,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     displaySongs(songs);
+
+    const searchTitle = s => String(songs.title).includes(e.value);
+
+    const searchArtist = s => String(artist.name) == (e.value);
+
+    const searchGenre = s => String(genre.name) == (e.value);
+
+    let searchList = [];
+    document.querySelector("#searchForm").addEventListener("submit", function (e) {
+        if (e.target.id == "title") {
+            searchList = songs.filter(searchTitle);
+        }
+        else if (e.target.id == "artist") {
+            searchList = songs.filter(searchArtist);
+        }
+        else if(e.target.id == "genre") {
+            searchList = songs.filter(searchGenre);
+        }
+    });
+
     //function name: displaySongs. This function creates a table and its elements and displays
     //the passed in song object in the form title, artist, year, genre, popularity. 
-
     function displaySongs(sortedSongs) {
         
         const allSongsTable = document.querySelector(".allSongsTable");
         
         const tableBody = document.createElement("tbody");
-
+        tableBody.innerHTML = "";
         for (let s of sortedSongs) {
             
             let tableRow = document.createElement("tr");
@@ -89,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(genres);
     //create a dropdown list of options for genres
     const genreSelect = document.querySelector("#genreSelect");
+    
     for (let g of genres) {
         const genreOption = document.createElement("option");
         genreOption.value = g.id;
@@ -96,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
         genreSelect.appendChild(genreOption);
     }
     console.log(artists);
-    //create a dropdown 
+    //create a dropdown list of options for artists
     const artistSelect = document.querySelector("#artistSelect");
     for (let a of artists) {
         const artistOption = document.createElement("option");
