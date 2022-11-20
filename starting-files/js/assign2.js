@@ -49,25 +49,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     displaySongs(songs);
 
-    const searchTitle = s => String(songs.title).includes(e.value);
+   
 
-    const searchArtist = s => String(artist.name) == (e.value);
+    
 
-    const searchGenre = s => String(genre.name) == (e.value);
+    //attempt to search songs with title, artist, and genre
 
-    let searchList = [];
     document.querySelector("#searchForm").addEventListener("submit", function (e) {
-        if (e.target.id == "title") {
-            searchList = songs.filter(searchTitle);
+        let searchList = [];
+        if (e.target && e.target.nodeName == 'SUBMIT') { 
+            if (e.target.id == "title") {
+                 searchList = songs.filter(s => String(songs.title).includes(e.value));
+              
+            }
+            else if (e.target.id == "artistSelect") {
+                searchList= songs.filter(s => songs.artist.name == e.value);
+               
+            }
+            else if (e.target.id == "genreSelect") {
+                searchList = songs.filter(s => songs.genre.name == e.value);
+               
+            }
         }
-        else if (e.target.id == "artist") {
-            searchList = songs.filter(searchArtist);
-        }
-        else if(e.target.id == "genre") {
-            searchList = songs.filter(searchGenre);
-        }
+        
+        displaySongs(searchList);
     });
-
+   
     //function name: displaySongs. This function creates a table and its elements and displays
     //the passed in song object in the form title, artist, year, genre, popularity. 
     function displaySongs(sortedSongs) {
@@ -105,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     };
     
-    console.log(genres);
+   // console.log(genres);
     //create a dropdown list of options for genres
     const genreSelect = document.querySelector("#genreSelect");
     
@@ -115,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
         genreOption.textContent = g.name;
         genreSelect.appendChild(genreOption);
     }
-    console.log(artists);
+   // console.log(artists);
     //create a dropdown list of options for artists
     const artistSelect = document.querySelector("#artistSelect");
     for (let a of artists) {
