@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Assignment 2</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Search Page</title>
+    <link rel="stylesheet" href="css/a2css.css">
+
+    <script src="artists.json"></script>
+    <script src="sample-songs.json"></script>
+    <script src="genres.json"></script>
+    <script src="js/assign2.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <aside class="search">
+            Basic Song Search
+        </aside>
+        <div class="row justify-content-md-center">
+            <div class="col-4" id="aside">
+                <span class="flow-text"> Basic Search</span>
+                <form id="searchForm" action="#">
+                    <div class="form-check">
+                        <input class="form-check-input" name="flexRadioDefault" type="radio" />
+                        <label class="form-check-label" for="titleSearch">
+                            <span>Title</span>
+                            <input name="title" id="titleSearch" />
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="artistSelect">
+                            <input class="form-check-input" name="flexRadioDefault" type="radio" />
+                            <span>Artist</span>
+                            <select name="artistSelect" id="artistSelect"><option value="" disabled selected>Select Artist</option></select>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="genreSelect">
+                            <input class="form-check-input" name="flexRadioDefault" type="radio" />
+                            <span>Genre</span>
+                            <select name="genreSelect" id="genreSelect"><option value="" disabled selected>Select Genre</option></select>
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col s2">
+                            <button id="clear" type="button" class="btn btn-dark" value="clear">Clear</button>
+                            <button id="submit" type="button" class="btn btn-dark" value="submit">Filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col col-8">
+                <section id="allSongs">
+                    <table class="table table-dark table-hover">
+                        <thead id="allSongsTH">
+                            <tr>
+                                <th>Title<button type="button" id="titleRadioButton" class="btn btn-dark" />&#9660;</th>
+                                <th>Artist<button type="button" id="artistRadioButton" class="btn btn-dark" />&#9660;</th>
+                                <th>Year<button type="button" id="yearRadioButton" class="btn btn-dark" />&#9660;</th>
+                                <th>Genre<button type="button" id="genreRadioButton" class="btn btn-dark" />&#9660;</th>
+                                <th>Popularity<button type="button" id="popRadioButton" class="btn btn-dark" />&#9660;</th>
+                            </tr>
+                        </thead>
+                        <tbody class="allSongsBody"></tbody>
+                    </table>
+                </section>
+            </div>
+
+        </div>
+        <section id="singleSong" class="hidden">
+        </section>
+        <section id="playlist" class="hidden">
+        </section>
+
+        <div class="row justify-content-start">
+
+        </div>
+    </div>
+</body>
+</html>
+<footer>
+    COMP3512F2022<br> Assignment 2
+    <a href='https://github.com/hamid269/Comp3512f2022Asg2'>Github Repository </a><br>
+    <br>
+    <div class="Names">
+        Contributors:<br>
+        <a href='https://github.com/'>Jameson Watson</a><br>
+        <a href='https://github.com/hamid269'> Hoomer Amid</a><br>
+    </div>
+</footer>
