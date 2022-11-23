@@ -1,4 +1,4 @@
-hidden {
+.hidden {
     display: none;
 }
 
@@ -14,9 +14,31 @@ table {
     border: 2px solid black;
 }
 
+body{
+    background-color:slategrey;
+}
 footer {
     position: fixed;
     bottom: 0px;
     width: 100%;
     text-align: center;
+}
+
+div #allSongs{
+    overflow-y:scroll;
+}
+
+form input[type="submit"]{
+    cursor: pointer;
+}
+#searchForm{
+    justify-content:space-around;
+}
+
+form label{
+    text-transform:uppercase;
+}
+
+form input[type="radio"]{
+
 }

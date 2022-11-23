@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
-    <!--Compiled and minified JavaScript -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
     <title>Search Page</title>
     <link rel="stylesheet" href="css/a2css.css">
 
@@ -20,113 +20,79 @@
 </head>
 
 <body>
-
-    <aside class="search">
-        Basic Song Search
-    </aside>
-    <section id="allSongs">
-
-        <table class="allSongsTable">
-            <tr>
-                <th>Title<input type="radio" id="titleRadioButton" /></th>
-                <th>Artist<input type="radio" id="artistRadioButton" /></th>
-                <th>Year<input type="radio" id="yearRadioButton" /></th>
-                <th>Genre<input type="radio" id="genreRadioButton" /></th>
-                <th>Popularity<input type="radio" id="popRadioButton" /></th>
-            </tr>
-        </table>
-
-    </section>
-    <section id="singleSong" class="hidden">
-    </section>
-    <section id="playlist" class="hidden">
-    </section>
-
-    <div class="row">
-        <div class="col s3" id="aside">
-            <span class="flow-text"> Basic Search</span>
-            <form id="searchForm" action="#">
-                <p>
-                    <label>
-                        <input name="title" type="radio" />
-                        <span>Title</span>
-                        <input name="title" id="title" />
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        <input name="artist" type="radio" />
-                        <span>Artist</span>
-                        <select name ="artistSelect" id="artistSelect" placeholder="Select your artist"></select>
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        <input name="genre" type="radio" />
-                        <span>Genre</span>
-                        <select name="genreSelect" id="genreSelect" aria-placeholder="Select your genre"></select>
-                    </label>
-                </p>
-                <div class="row">
-                    <div class="col s2">
-                        <button type="reset">Clear</button>
-                        <button type="submit" value="submit">Filter</button>
+    <div class="container">
+        <aside class="search">
+            Basic Song Search
+        </aside>
+        <div class="row justify-content-md-center">
+            <div class="col-4" id="aside">
+                <span class="flow-text"> Basic Search</span>
+                <form id="searchForm" action="#">
+                    <div class="form-check">
+                        <input class="form-check-input" name="flexRadioDefault" type="radio" />
+                        <label class="form-check-label" for="titleSearch">
+                            <span>Title</span>
+                            <input name="title" id="titleSearch" />
+                        </label>
                     </div>
-                </div>
-            </form>
+                    <div class="form-check">
+                        <label class="form-check-label" for="artistSelect">
+                            <input class="form-check-input" name="flexRadioDefault" type="radio" />
+                            <span>Artist</span>
+                            <select name="artistSelect" id="artistSelect"><option value="" disabled selected>Select Artist</option></select>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="genreSelect">
+                            <input class="form-check-input" name="flexRadioDefault" type="radio" />
+                            <span>Genre</span>
+                            <select name="genreSelect" id="genreSelect"><option value="" disabled selected>Select Genre</option></select>
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col s2">
+                            <button id="clear" type="button" class="btn btn-dark" value="clear">Clear</button>
+                            <button id="submit" type="button" class="btn btn-dark" value="submit">Filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col col-8">
+                <section id="allSongs">
+                    <table class="table table-dark table-hover">
+                        <thead id="allSongsTH">
+                            <tr>
+                                <th>Title<button type="button" id="titleRadioButton" class="btn btn-dark" />&#9660;</th>
+                                <th>Artist<button type="button" id="artistRadioButton" class="btn btn-dark" />&#9660;</th>
+                                <th>Year<button type="button" id="yearRadioButton" class="btn btn-dark" />&#9660;</th>
+                                <th>Genre<button type="button" id="genreRadioButton" class="btn btn-dark" />&#9660;</th>
+                                <th>Popularity<button type="button" id="popRadioButton" class="btn btn-dark" />&#9660;</th>
+                            </tr>
+                        </thead>
+                        <tbody class="allSongsBody"></tbody>
+                    </table>
+                </section>
+            </div>
+
+        </div>
+        <section id="singleSong" class="hidden">
+        </section>
+        <section id="playlist" class="hidden">
+        </section>
+
+        <div class="row justify-content-start">
+
         </div>
     </div>
-
-    <div class=" col s1 "></div>
-    <div class="col s8 " id="result ">
-        <!--
-        <span class="flow-text ">Browse/Results</span>
-        <div class="row ">
-            <div class="col s3 ">
-                <span>
-                    Title
-                </span>
-                <input type="checkbox " />
-            </div>
-            <div class="col s2 ">
-                <span>
-                    Artist
-                </span>
-            </div>
-            <div class="col s2 ">
-                <span>
-                    Year
-                </span>
-            </div>
-            <div class="col s2 ">
-                <span>
-                    Genre
-                </span>
-            </div>
-            <div class="col s2 ">
-                <span>
-                    Popularity
-                </span>
-            </div>
-            <div class="col s1 ">
-                add
-            </div>
-
-        </div>
-
-
-    </div>
-            -->
 </body>
-
-    <footer>
-        COMP3512F2022<br> Assignment 2
-        <a href='https://github.com/hamid269/Comp3512f2022Asg2'>Github Repository </a><br>
-        <br>
-        <div class="Names">
-            Contributors:<br>
-            <a href='https://github.com/'>Jameson Watson</a><br>
-            <a href='https://github.com/hamid269'> Hoomer Amid</a><br>
-        </div>
-    </footer>
 </html>
+<footer>
+    COMP3512F2022<br> Assignment 2
+    <a href='https://github.com/hamid269/Comp3512f2022Asg2'>Github Repository </a><br>
+    <br>
+    <div class="Names">
+        Contributors:<br>
+        <a href='https://github.com/'>Jameson Watson</a><br>
+        <a href='https://github.com/hamid269'> Hoomer Amid</a><br>
+    </div>
+</footer>
