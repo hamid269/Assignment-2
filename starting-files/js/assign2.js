@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
        Some possibilities: if using Visual Code, use Live Server extension; if Brackets,
        use built-in Live Preview.
     */
-
+   
     const jsonData = localStorage.getItem("songs");
     if (!jsonData) {
         fetch(api)
@@ -62,7 +62,55 @@ document.addEventListener("DOMContentLoaded", function () {
             displaySongs(sortByPop);
         });
         //end of click events for the sort buttons on the main table.
-      
+       
+        //click event listener for when a user clicks on a song title.
+        
+        document.querySelector('.clickTitle').addEventListener("click", function (e) {
+            if (e.target.nodeName == 'A') {
+                const single = songs.find(s => s.id == e.target.dataset.songID);
+                e.preventDefault();
+                // e.stopPropagation();
+                populateSongView(single);
+            }
+        });
+
+        artistSelected(songs);
+        genreSelected(songs);
+        searchTitles(songs);
+
+        console.log(artists);
+        console.log(songs);
+    }
+    /*
+     * function name: searchTitles
+     * parameters: songs json data
+     * this function provides an event listener for when a key is typed into the title search bar.
+     * the function will search for titles that match the entered keys, then displays them in the 
+     * all songs table.
+     * */
+    function searchTitles(songs) {
+        document.querySelector("#titleSearch").addEventListener("keyup", function (e) {
+            if (e.target.nodeName == 'INPUT' && e.target) {
+                const search = e.target.value;
+                const searchTitles = songs.filter(s => { return s.title.includes(search) });
+                displaySongs(searchTitles);
+            }
+        });
+    }
+    /*
+     * function name:artistSelected
+     * parameters: songs json data
+     * this function provides an event listener for a change in the select list for artist. 
+     * if the user selects an artist, the table is populated with the matching songs for that artist. 
+     */
+    function artistSelected(songs) {
+        document.querySelector("#artistSelect").addEventListener("change", function (e) {
+            if (e.target.nodeName == 'SELECT' && e.target) {
+                const search = e.target.value;
+                const searchArtists = songs.filter(s => s.artist.name == search);
+                displaySongs(searchArtists);   
+            }
+        });
     }
     /*
      * function name: artistSelectList
@@ -76,10 +124,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const artistSelect = document.querySelector("#artistSelect");
         for (let a of artists) {
             const artistOption = document.createElement("option");
-            artistOption.value = a.id;
+            artistOption.value = a.name;
             artistOption.textContent = a.name;
             artistSelect.appendChild(artistOption);
         }
+    }
+    /*
+   * function name:genreSelected
+   * parameters: songs json data
+   * this function provides an event listener for a change in the select list for genre. 
+   * if the user selects an genre, the table is populated with the matching songs for that genre. 
+   */
+    function genreSelected(songs) {
+        document.querySelector("#genreSelect").addEventListener("change", function (e) {
+            if (e.target.nodeName == 'SELECT' && e.target) {
+                const search = e.target.value;
+                const searchGenres = songs.filter(s => s.genre.name == search);
+                displaySongs(searchGenres);
+            }
+        });
     }
     /*
      * function name: genreSelectList
@@ -92,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const genreSelect = document.querySelector("#genreSelect");
         for (let g of genres) {
             const genreOption = document.createElement("option");
-            genreOption.value = g.id;
+            genreOption.value = g.name;
             genreOption.textContent = g.name;
             genreSelect.appendChild(genreOption);
         }
@@ -139,13 +202,13 @@ document.addEventListener("DOMContentLoaded", function () {
             let tableRow = document.createElement("tr");
            
             let title = document.createElement("td");
+            title.value= s.title;
             let a = document.createElement("a");
             a.setAttribute("data-songID", s.id);
-            a.classList.add("no-underline");
             a.classList.add("clickTitle");
             a.textContent = s.title;
             a.style.color = "#7289da";
-            a.setAttribute("href", "");
+            a.setAttribute("href", "#");
             title.appendChild(a);
             tableRow.appendChild(title);
 
@@ -186,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let favorite = document.createElement("td");
             let button = document.createElement("button");
             favorite.appendChild(button);
-            button.classList.add("btn", "btn-dark");
+            button.classList.add("btn", "btn-dark", "addFav");
             let addFav = document.createElement("img");
             addFav.setAttribute("src", "icons/plus-lg.svg");
             button.appendChild(addFav);
@@ -196,25 +259,41 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    //click event listener for when a user clicks on a song title.
-    document.querySelector('.clickTitle').addEventListener("click", function (e) {
-        if (e.target.nodeName == 'A' && e.target.nodeName == 'TD') {
-            const single = songs.find(s => s.id == e.target.dataset.songID);
-            alert("songclicked");
-            e.preventDefault();
-            e.stopPropagation();
-            populateSongView(single);
-        }
-    });
-
     /*function name: populateSongView
      * This function populates the song view of a single song when it is clicked from the list
      * of displayed songs
      * 
     */
     function populateSongView(single) {
-        let clickedSongTitle = e.target.getAttribute('');
-        const findSong = songs.find(s => s.id == e.target.dataset.songId);
+      //calculations done to get the duration in minutes:seconds
+        let minutes = Math.floor(single.details.duration / 60);
+        let seconds = parseInt(single.details.duration % 60, 10);
+
+        let singleSongBody = document.querySelector(".singleSongBody");
+        singleSongBody.innerHTML = "";
+        let tableRow = document.createElement("tr");
+
+        let title = document.createElement("td");
+        title.textContent = single.title;
+
+        let artistName = document.createElement("td");
+        artistName.textContent = single.artist.name;
+
+        let genre = document.createElement("td");
+        genre.textContent = single.genre.name;
+
+        let year = document.createElement("td");
+        year.textContent = single.year;
+
+        let duration = document.createElement("td");
+        duration.textContent = minutes + ":" + seconds;
+
+        tableRow.appendChild(title);
+        tableRow.appendChild(artistName);
+        tableRow.appendChild(genre);
+        tableRow.appendChild(year);
+        tableRow.appendChild(duration);
+        singleSongBody.appendChild(tableRow);
     }
 
 });

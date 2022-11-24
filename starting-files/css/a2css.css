@@ -39,9 +39,13 @@ footer {
 }
 button{
     display:inline-block;
+
+}
+td{
+    width:200px;
 }
 
-form input[type="submit"]{
+form input[type="submit"] {
     cursor: pointer;
 }
 #searchForm{
