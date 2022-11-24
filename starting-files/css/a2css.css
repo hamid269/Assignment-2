@@ -24,8 +24,9 @@ footer {
     text-align: center;
 }
 
-div #allSongs{
+#allSongs{
     overflow-y:scroll;
+    height:500px;
 }
 
 form input[type="submit"]{
@@ -39,6 +40,6 @@ form label{
     text-transform:uppercase;
 }
 
-form input[type="radio"]{
-
+form input[type="text"] {
+    
 }
