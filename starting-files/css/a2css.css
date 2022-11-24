@@ -14,8 +14,9 @@ table {
     border: 2px solid black;
 }
 
-body{
-    background-color:slategrey;
+body {
+    background-color: #1e2124;
+    color: white;
 }
 footer {
     position: fixed;
@@ -27,6 +28,17 @@ footer {
 #allSongs{
     overflow-y:scroll;
     height:500px;
+}
+
+#allSongs td{
+    justify-content:space-around;
+    align-content:start;
+}
+#allSongsTH{
+    justify-content:start;
+}
+button{
+    display:inline-block;
 }
 
 form input[type="submit"]{

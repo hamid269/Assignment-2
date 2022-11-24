@@ -140,12 +140,12 @@ document.addEventListener("DOMContentLoaded", function () {
            
             let title = document.createElement("td");
             let a = document.createElement("a");
-            title.classList.add("clickTitle");
-            //title.textContent = s.title;
+            a.setAttribute("data-songID", s.id);
+            a.classList.add("no-underline");
             a.classList.add("clickTitle");
             a.textContent = s.title;
             a.style.color = "#7289da";
-            a.setAttribute("href", "s.title");
+            a.setAttribute("href", "");
             title.appendChild(a);
             tableRow.appendChild(title);
 
@@ -179,6 +179,18 @@ document.addEventListener("DOMContentLoaded", function () {
             div.style = "width:" + s.details.popularity + "%";
             popularity.appendChild(div);
             tableRow.appendChild(popularity)
+
+            //<button type="button" class="btn btn-primary">
+           // Favorites
+               // </button >
+            let favorite = document.createElement("td");
+            let button = document.createElement("button");
+            favorite.appendChild(button);
+            button.classList.add("btn", "btn-dark");
+            let addFav = document.createElement("img");
+            addFav.setAttribute("src", "icons/plus-lg.svg");
+            button.appendChild(addFav);
+            tableRow.appendChild(favorite);
             tableBody.appendChild(tableRow);
 
         }
@@ -187,10 +199,11 @@ document.addEventListener("DOMContentLoaded", function () {
     //click event listener for when a user clicks on a song title.
     document.querySelector('.clickTitle').addEventListener("click", function (e) {
         if (e.target.nodeName == 'A' && e.target.nodeName == 'TD') {
+            const single = songs.find(s => s.id == e.target.dataset.songID);
             alert("songclicked");
             e.preventDefault();
             e.stopPropagation();
-            populateSongView(e);
+            populateSongView(single);
         }
     });
 
@@ -199,8 +212,8 @@ document.addEventListener("DOMContentLoaded", function () {
      * of displayed songs
      * 
     */
-    function populateSongView(e) {
-        let clickedSongTitle = e.target.getAttribute('title');
+    function populateSongView(single) {
+        let clickedSongTitle = e.target.getAttribute('');
         const findSong = songs.find(s => s.id == e.target.dataset.songId);
     }
 

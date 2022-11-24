@@ -9,7 +9,6 @@
     <!-- Compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
     <title>Search Page</title>
     <link rel="stylesheet" href="css/a2css.css">
 
@@ -62,11 +61,12 @@
                     <table class="table table-dark table-hover">
                         <thead id="allSongsTH">
                             <tr>
-                                <th>Title<button type="button" id="titleRadioButton" class="btn btn-dark" />&#9660;</th>
-                                <th>Artist<button type="button" id="artistRadioButton" class="btn btn-dark" />&#9660;</th>
-                                <th>Year<button type="button" id="yearRadioButton" class="btn btn-dark" />&#9660;</th>
-                                <th>Genre<button type="button" id="genreRadioButton" class="btn btn-dark" />&#9660;</th>
-                                <th>Popularity<button type="button" id="popRadioButton" class="btn btn-dark" />&#9660;</th>
+                                <th>Title<button type="button" id="titleRadioButton" class="btn btn-dark text-center" />&#9660;</th>
+                                <th>Artist<button type="button" id="artistRadioButton" class="btn btn-dark text-center" />&#9660;</th>
+                                <th>Year<button type="button" id="yearRadioButton" class="btn btn-dark text-center" />&#9660;</th>
+                                <th>Genre<button type="button" id="genreRadioButton" class="btn btn-dark text-center" />&#9660;</th>
+                                <th>Popularity<button type="button" id="popRadioButton" class="btn btn-dark text-center" />&#9660;</th>
+                                <th>Favorite</th>
                             </tr>
                         </thead>
                         <tbody class="allSongsBody"></tbody>
@@ -75,7 +75,18 @@
             </div>
 
         </div>
-        <section id="singleSong" class="hidden">
+        <section id="singleSong" class="">
+            
+            <table class="table table-dark table-hover">
+                <thead>
+                    <tr>
+                        <th><strong> Artist Type </strong></th>
+                        <th><strong> Genre </strong></th>
+                        <th><strong> Date </strong></th>
+                        <th><strong> Duration </strong></th>
+                    </tr>
+                </thead>
+            </table>
         </section>
         <section id="playlist" class="hidden">
         </section>
