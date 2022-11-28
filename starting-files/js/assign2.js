@@ -65,27 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         //end of click events for the sort buttons on the main table.
 
-        //click event listener for when a user clicks on a song title.
-       /* document.querySelectorAll(".clickTitle").addEventListener("click", function (e) {
-            if (e.target.nodeName == 'A' && e.target) {
-                        let id = e.target.getAttribute("songID");
-                        const single = songs.find(s => s.id == id);
-                        console.log(id);
-                        console.log(songs.id);
-                        //e.preventDefault();
-                        //e.stopPropagation();
-                        populateSongView(single);
-                    }
-                });
-        */
-       
-        const clickTitle = document.querySelectorAll(".clickTitle");
-        for (let titles of clickTitle) {
-            titles.setAttribute("data-songID", titles.id);
-            titles.addEventListener("click", (e) => {
-                console.log(titles.id);
-            });
-        }
+        
+     
         console.log(artists);
         console.log(songs);
     }
@@ -265,13 +246,13 @@ document.addEventListener("DOMContentLoaded", function () {
         tableBody.innerHTML = ""; 
 
         for (let s of sortedSongs) {
-           
+            //console.log(s);
             let tableRow = document.createElement("tr");
-            tableRow.setAttribute("data-songID", s.id);
+            //tableRow.setAttribute("data-songID", s.id);
             let title = document.createElement("td");
             title.value= s.title;
             let a = document.createElement("a");
-           // a.setAttribute("data-songID", s.id);
+            a.setAttribute("data-songid", s.song_id);
             a.classList.add("clickTitle");
             a.textContent = s.title;
             a.style.color = "#7289da";
@@ -323,6 +304,22 @@ document.addEventListener("DOMContentLoaded", function () {
             tableRow.appendChild(favorite);
             tableBody.appendChild(tableRow);
         }
+        /*
+         * add the click event within the build table loop.
+         */ 
+        const clickTitle = document.querySelectorAll(".clickTitle");
+        for (let titles of clickTitle) {
+            titles.addEventListener("click", (e) => {
+                if (e.target.nodeName == 'A' && e.target) {
+                    let id = e.target.getAttribute("data-songid");
+                    const single = sortedSongs.find(s => s.song_id == id);
+                    //console.log(single);
+                    e.preventDefault();
+                    //e.stopPropagation();
+                    populateSongView(single);
+                }
+            });
+        }
     };
 
     /*function name: populateSongView
@@ -333,7 +330,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function populateSongView(single) {
         let singleSongView = document.querySelector("#singleSong");
         singleSongView.classList.toggle("hidden");
-      //calculations done to get the duration in minutes:seconds
+        //calculations done to get the duration in minutes:seconds
         let minutes = Math.floor(single.details.duration / 60);
         let seconds = parseInt(single.details.duration % 60, 10);
 
