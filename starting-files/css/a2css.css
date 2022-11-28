@@ -1,7 +1,9 @@
 .hidden {
     display: none;
 }
-
+.visibe{
+    display: none;
+}
 table {
     color: black;
 }

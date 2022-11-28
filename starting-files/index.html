@@ -28,7 +28,7 @@
                 <span class="flow-text"> Basic Search</span>
                 <form id="searchForm" action="#">
                     <div class="form-check">
-                        <input class="form-check-input" name="flexRadioDefault" type="radio" />
+                        <input class="form-check-input" name="flexRadioDefault" id="title" type="radio" />
                         <label class="form-check-label" for="titleSearch">
                             <span>Title</span>
                             <input name="title" id="titleSearch" type="text" />
@@ -36,16 +36,32 @@
                     </div>
                     <div class="form-check">
                         <label class="form-check-label" for="artistSelect">
-                            <input class="form-check-input"name="flexRadioDefault" type="radio" />
+                            <input class="form-check-input" name="flexRadioDefault" id="artist" type="radio" />
                             <span>Artist</span>
-                            <select name="artistSelect" id="artistSelect"><option value="" disabled selected>Select Artist</option></select>
+                            <select name="artistSelect" id="artistSelect"><option value="" enabled selected>Select Artist</option></select>
                         </label>
                     </div>
                     <div class="form-check">
                         <label class="form-check-label" for="genreSelect">
-                            <input class="form-check-input" name="flexRadioDefault" type="radio" />
+                            <input class="form-check-input" name="flexRadioDefault" id="genre" type="radio" />
                             <span>Genre</span>
-                            <select name="genreSelect" id="genreSelect"><option value="" disabled selected>Select Genre</option></select>
+                            <select name="genreSelect" id="genreSelect"><option value="" enabled selected>Select Genre</option></select>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="flexRadioDefault" id="year" type="radio" />
+                        <label class="form-check-label" for="yearSearch">
+                            <span>Year</span>
+                            <input name="year" id="titleSearchGreater" type="text" />
+                            <input name="year" id="titleSearchLess" type="text" />
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="flexRadioDefault" id="Popularity" type="radio" />
+                        <label class="form-check-label" for="popSearch">
+                            <span>Popularity</span>
+                            <input name="pop" id="popSearchGreater" type="text" />
+                            <input name="pop" id="popSearchLess" type="text" />
                         </label>
                     </div>
                     <div class="row">
@@ -75,7 +91,7 @@
             </div>
 
         </div>
-        <section id="singleSong" class="">
+        <section id="singleSong" class="hidden">
             
             <table class="table table-dark table-hover">
                 <thead>
@@ -89,7 +105,12 @@
                 </thead>
                 <tbody class="singleSongBody"></tbody>
             </table>
+            <div class="row">
+                <ul class="songDetails"> </ul>
+            </div>
         </section>
+
+
         <section id="playlist" class="hidden">
         </section>
 

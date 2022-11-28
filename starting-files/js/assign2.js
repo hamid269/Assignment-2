@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
         genreSelectList(genres);
         //invoke select list
         artistSelectList(artists);
+
+        formFilter(songs);
         // "const ______RadioButton" SORTS FOR TITLE, ARTIST, YEAR, GENRE, POPULARITY BEGIN HERE.
         //each of these event listeners sort the songs by the appropriate field.
         const titleRadioButton = document.querySelector("#titleRadioButton").addEventListener("click", function () {
@@ -62,24 +64,89 @@ document.addEventListener("DOMContentLoaded", function () {
             displaySongs(sortByPop);
         });
         //end of click events for the sort buttons on the main table.
-       
+
         //click event listener for when a user clicks on a song title.
-        
-        document.querySelector('.clickTitle').addEventListener("click", function (e) {
-            if (e.target.nodeName == 'A') {
-                const single = songs.find(s => s.id == e.target.dataset.songID);
-                e.preventDefault();
-                // e.stopPropagation();
-                populateSongView(single);
-            }
-        });
-
-        artistSelected(songs);
-        genreSelected(songs);
-        searchTitles(songs);
-
+       /* document.querySelectorAll(".clickTitle").addEventListener("click", function (e) {
+            if (e.target.nodeName == 'A' && e.target) {
+                        let id = e.target.getAttribute("songID");
+                        const single = songs.find(s => s.id == id);
+                        console.log(id);
+                        console.log(songs.id);
+                        //e.preventDefault();
+                        //e.stopPropagation();
+                        populateSongView(single);
+                    }
+                });
+        */
+       
+        const clickTitle = document.querySelectorAll(".clickTitle");
+        for (let titles of clickTitle) {
+            titles.setAttribute("data-songID", titles.id);
+            titles.addEventListener("click", (e) => {
+                console.log(titles.id);
+            });
+        }
         console.log(artists);
         console.log(songs);
+    }
+    /*
+     * function name: formFilter
+     * parameter: songs object
+     * this function performs multiple event listeners dependant on certain
+     * radio buttons that are clicked for title, artist, genre, year, and popularity.
+     * If no radio buttons are selected, a user can input any field value.
+     * If radio buttons are selected, the user must use clear to select a different field.
+     */
+    function formFilter(songs) {
+        const title = document.querySelector("#title");
+        const artist = document.querySelector("#artist");
+        const genre = document.querySelector("#genre");
+        const genreSelect = document.querySelector("#genreSelect");
+        const clearForm = document.querySelector("#clear");
+
+        //clear the contents of the form and enable the input fields for further use
+        clearForm.addEventListener("click", function () {
+            title.disabled = false;
+            const searchForm = document.querySelector("#searchForm");
+            searchForm.reset();
+            artist.disabled = false;
+            genre.disabled = false;
+            artistSelect.disabled = false;
+            genreSelect.disabled = false;
+            displaySongs(songs);
+        });
+        // allow user to search using any filter if no input radio buttons are selected
+        if (title.disabled == false && genre.disabled == false && artist.disabled == false) {
+            searchTitles(songs);
+            artistSelected(songs);
+            genreSelected(songs);
+        }
+        //title radio button selected, disable artist, genre, year, and popularity searches. 
+        title.addEventListener("click", function (e) {
+            if (title.disabled == false) {
+                artist.disabled = true;
+                genre.disabled = true;
+                genreSelect.disabled = true;
+                artistSelect.disabled = true;
+                searchTitles(songs);
+            }
+        });
+        artist.addEventListener("click", function (e) {
+            if (artist.disabled == false) {
+                title.disabled = true;
+                genre.disabled = true;
+                genreSelect.disabled = true;
+                artistSelected(songs);
+            }
+        });
+        genre.addEventListener("click", function (e) {
+            if (genre.disabled == false) {
+                artist.disabled = true;
+                title.disabled = true;
+                artistSelect.disabled = true;
+                genreSelected(songs);
+            }
+        });
     }
     /*
      * function name: searchTitles
@@ -91,8 +158,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function searchTitles(songs) {
         document.querySelector("#titleSearch").addEventListener("keyup", function (e) {
             if (e.target.nodeName == 'INPUT' && e.target) {
-                const search = e.target.value;
-                const searchTitles = songs.filter(s => { return s.title.includes(search) });
+                const search = e.target.value.toLowerCase();
+                const searchTitles = songs.filter(s => { return s.title.toLowerCase().includes(search) });
                 displaySongs(searchTitles);
             }
         });
@@ -200,11 +267,11 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let s of sortedSongs) {
            
             let tableRow = document.createElement("tr");
-           
+            tableRow.setAttribute("data-songID", s.id);
             let title = document.createElement("td");
             title.value= s.title;
             let a = document.createElement("a");
-            a.setAttribute("data-songID", s.id);
+           // a.setAttribute("data-songID", s.id);
             a.classList.add("clickTitle");
             a.textContent = s.title;
             a.style.color = "#7289da";
@@ -255,7 +322,6 @@ document.addEventListener("DOMContentLoaded", function () {
             button.appendChild(addFav);
             tableRow.appendChild(favorite);
             tableBody.appendChild(tableRow);
-
         }
     };
 
@@ -265,10 +331,13 @@ document.addEventListener("DOMContentLoaded", function () {
      * 
     */
     function populateSongView(single) {
+        let singleSongView = document.querySelector("#singleSong");
+        singleSongView.classList.toggle("hidden");
       //calculations done to get the duration in minutes:seconds
         let minutes = Math.floor(single.details.duration / 60);
         let seconds = parseInt(single.details.duration % 60, 10);
 
+        //build the table to display title, artist name, type, genre, year, and duration
         let singleSongBody = document.querySelector(".singleSongBody");
         singleSongBody.innerHTML = "";
         let tableRow = document.createElement("tr");
