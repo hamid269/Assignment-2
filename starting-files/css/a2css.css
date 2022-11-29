@@ -21,7 +21,7 @@ body {
     color: white;
 }
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0px;
     width: 100%;
     text-align: center;
@@ -60,4 +60,8 @@ form label{
 
 form input[type="text"] {
     
+}
+
+#songDetails{
+    list-style:none;
 }

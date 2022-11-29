@@ -65,7 +65,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         //end of click events for the sort buttons on the main table.
 
-        
+        document.querySelector("#closeSong").addEventListener("click", function () {
+            let singleSongView = document.querySelector("#singleSong");
+            singleSongView.classList.toggle("hidden");
+        });
      
         console.log(artists);
         console.log(songs);
@@ -236,6 +239,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
    */
 
+
     //function name: displaySongs. 
     //Parameters: a song object. sorts are done on the songs data then passed in to the function.
     //This function creates a table and its elements and displays
@@ -328,6 +332,61 @@ document.addEventListener("DOMContentLoaded", function () {
      * 
     */
     function populateSongView(single) {
+        //populate the analytics for the single
+        let analytics = document.querySelector("#songDetails");
+        analytics.innerHTML = "";
+
+        //energy
+        let li = document.createElement("li");
+        let img = document.createElement("img");
+        img.setAttribute("src", "icons/arrow.png");
+        li.textContent = "Energy - " + single.analytics.energy;
+        li.insertAdjacentElement("afterbegin", img);
+        analytics.appendChild(li);
+        //acousticness
+        let li2 = document.createElement("li");
+        let img2 = document.createElement("img");
+        img2.setAttribute("src", "icons/arrow.png");
+        li2.textContent = "Acousticness - " + single.analytics.acousticness;
+        li2.insertAdjacentElement("afterbegin", img2);
+        analytics.appendChild(li2);
+        //danceability
+        let li3 = document.createElement("li");
+        let img3 = document.createElement("img");
+        img3.setAttribute("src", "icons/arrow.png");
+        li3.textContent = "Danceability - " + single.analytics.danceability;
+        li3.insertAdjacentElement("afterbegin", img3);
+        analytics.appendChild(li3);
+        //liveness
+        let li4 = document.createElement("li");
+        let img4 = document.createElement("img");
+        img4.setAttribute("src", "icons/arrow.png");
+        li4.textContent = "Liveness - " + single.analytics.liveness;
+        li4.insertAdjacentElement("afterbegin", img4);
+        analytics.appendChild(li4);
+        //speechiness
+        let li5 = document.createElement("li");
+        let img5 = document.createElement("img");
+        img5.setAttribute("src", "icons/arrow.png");
+        li5.textContent = "Speechiness - " + single.analytics.speechiness;
+        li5.insertAdjacentElement("afterbegin", img5);
+        analytics.appendChild(li5);
+        //valence
+        let li6 = document.createElement("li");
+        let img6 = document.createElement("img");
+        img6.setAttribute("src", "icons/arrow.png");
+        li6.textContent = "Valence - " + single.analytics.valence;
+        li6.insertAdjacentElement("afterbegin", img6);
+        analytics.appendChild(li6);
+
+        //populate the title, artist, and icon
+        let songHeader = document.querySelector("#songHead");
+        let icon = document.createElement("img");
+        icon.setAttribute("src", "icons/play.png");
+        songHeader.textContent = single.title + " - " + single.artist.name;
+        songHeader.insertAdjacentElement("afterbegin", icon);
+
+        //populate the table
         let singleSongView = document.querySelector("#singleSong");
         singleSongView.classList.toggle("hidden");
         //calculations done to get the duration in minutes:seconds
