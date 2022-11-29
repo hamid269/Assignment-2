@@ -137,6 +137,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 genre.disabled = true;
                 genreSelect.disabled = true;
                 artistSelected(songs);
+                pop.disabled = true;
+                year.disabled = true;
             }
         });
          //disable everything else if genre radio is selected

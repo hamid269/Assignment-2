@@ -22,20 +22,19 @@
         background-color: #1e2124;
         color: white;
     }
-    
-    header {
-        position: static;
-        background-color: beige;
-        justify-content: end;
-    }
+
+header {
+    position: static;
+    background-color: #292b2c;
+    justify-content: end;
+}
     
     footer {
         position: relative;
         bottom: 0px;
         width: 100%;
         text-align: center;
-        background-color: beige;
-        color: black;
+        color: white;
     }
     
     #allSongs {
@@ -77,10 +76,10 @@
     #songDetails {
         list-style: none;
     }
-    
+
     .dropbtn {
-        background-color: lightcoral;
-        color: black;
+        background-color: #7289da;
+        color: white;
         padding: 16px;
         font-size: 16px;
         border: none;
@@ -94,7 +93,7 @@
     
     .dropdown-content {
         display: none;
-        position: sticky;
+        position: absolute;
         background-color: #f1f1f1;
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -107,16 +106,18 @@
         text-decoration: none;
         display: block;
     }
+
+        .dropdown-content a:hover {
+            
+            background-color: #7289da;
+        }
+
+.dropdown:hover .dropdown-content {
+    display: block;
     
-    .dropdown-content a:hover {
-        background-color: #ddd;
-    }
-    
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-    
+}
+
     .dropdown:hover .dropbtn {
-        background-color: lightblue;
-        color: black;
+        background-color: #7289da;
+        color: white;
     }
