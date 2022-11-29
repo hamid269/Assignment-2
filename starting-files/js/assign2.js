@@ -35,10 +35,22 @@ document.addEventListener("DOMContentLoaded", function () {
         genreSelectList(genres);
         //invoke select list
         artistSelectList(artists);
-
+        sortSongs(songs);
         formFilter(songs);
-        // "const ______RadioButton" SORTS FOR TITLE, ARTIST, YEAR, GENRE, POPULARITY BEGIN HERE.
-        //each of these event listeners sort the songs by the appropriate field.
+        
+        document.querySelector("#closeSong").addEventListener("click", function () {
+            let singleSongView = document.querySelector("#singleSong");
+            singleSongView.classList.toggle("hidden");
+        });
+     
+        console.log(artists);
+        console.log(songs);
+    }
+    /*
+    * "const ______RadioButton" SORTS FOR TITLE, ARTIST, YEAR, GENRE, POPULARITY BEGIN HERE.
+    * each of these event listeners sort the songs by the appropriate field.
+    */
+    function sortSongs(songs) {
         const titleRadioButton = document.querySelector("#titleRadioButton").addEventListener("click", function () {
             const sortByTitle = songs.sort((a, b) => a.title < b.title ? -1 : 1);
             displaySongs(sortByTitle);
@@ -64,14 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
             displaySongs(sortByPop);
         });
         //end of click events for the sort buttons on the main table.
-
-        document.querySelector("#closeSong").addEventListener("click", function () {
-            let singleSongView = document.querySelector("#singleSong");
-            singleSongView.classList.toggle("hidden");
-        });
-     
-        console.log(artists);
-        console.log(songs);
     }
     /*
      * function name: formFilter
@@ -84,8 +88,11 @@ document.addEventListener("DOMContentLoaded", function () {
     function formFilter(songs) {
         const title = document.querySelector("#title");
         const artist = document.querySelector("#artist");
+        const artistSelect = document.querySelector("#artistSelect")
         const genre = document.querySelector("#genre");
         const genreSelect = document.querySelector("#genreSelect");
+        const year = document.querySelector("#year");
+        const pop = document.querySelector("#pop");
         const clearForm = document.querySelector("#clear");
 
         //clear the contents of the form and enable the input fields for further use
@@ -97,24 +104,33 @@ document.addEventListener("DOMContentLoaded", function () {
             genre.disabled = false;
             artistSelect.disabled = false;
             genreSelect.disabled = false;
+            pop.disabled = false;
+            year.disabled = false;
             displaySongs(songs);
         });
         // allow user to search using any filter if no input radio buttons are selected
-        if (title.disabled == false && genre.disabled == false && artist.disabled == false) {
+        if (title.disabled == false && genre.disabled == false && artist.disabled == false &&
+            year.disabled == false && pop.disabled == false) {
             searchTitles(songs);
             artistSelected(songs);
             genreSelected(songs);
+            yearSearch(songs);
+            popSearchGreater(songs);
+            popSearchLess(songs);
         }
-        //title radio button selected, disable artist, genre, year, and popularity searches. 
+         //disable everything else if title radio is selected
         title.addEventListener("click", function (e) {
             if (title.disabled == false) {
                 artist.disabled = true;
                 genre.disabled = true;
                 genreSelect.disabled = true;
                 artistSelect.disabled = true;
+                pop.disabled = true;
+                year.disabled = true;
                 searchTitles(songs);
             }
         });
+         //disable everything else if artist radio is selected
         artist.addEventListener("click", function (e) {
             if (artist.disabled == false) {
                 title.disabled = true;
@@ -123,12 +139,39 @@ document.addEventListener("DOMContentLoaded", function () {
                 artistSelected(songs);
             }
         });
+         //disable everything else if genre radio is selected
         genre.addEventListener("click", function (e) {
             if (genre.disabled == false) {
                 artist.disabled = true;
                 title.disabled = true;
                 artistSelect.disabled = true;
+                pop.disabled = true;
+                year.disabled = true;
                 genreSelected(songs);
+            }
+        });
+        //disable everything else if year radio is selected
+        year.addEventListener("click", function (e) {
+            if (year.disabled == false) {
+                artist.disabled = true;
+                title.disabled = true;
+                artistSelect.disabled = true;
+                pop.disabled = true;
+                genreSelect.disabled = true;
+                genre.disabled = true;
+                yearSearch(songs);
+            }
+        });
+        pop.addEventListener("click", function (e) {
+            if (pop.disabled == false) {
+                artist.disabled = true;
+                title.disabled = true;
+                artistSelect.disabled = true;
+                year.disabled = true;
+                genreSelect.disabled = true;
+                genre.disabled = true;
+                popSearchGreater(songs);
+                popSearchLess(songs);
             }
         });
     }
@@ -179,6 +222,45 @@ document.addEventListener("DOMContentLoaded", function () {
             artistOption.textContent = a.name;
             artistSelect.appendChild(artistOption);
         }
+    }
+    /*
+     * function name: yearSearch
+     * parameters: songs
+     * This function creates a search for the year section of the form. When a user
+     * types in a year, the corresponding songs will show in the table.
+     * */
+    function yearSearch(songs) {
+        document.querySelector("#yearSearch").addEventListener("keyup", function (e) {
+            if (e.target.nodeName == 'INPUT' && e.target) {
+                const search = e.target.value;
+                const searchYear = songs.filter(s => { return s.year == search });
+                displaySongs(searchYear);
+            }
+        });
+    }
+    /*
+     * function names: popSearchGreater/Less
+     * parameters: songs
+     * function takes in the songs as a parameter, and ads an event listener to both the 
+     * less than and greater than options for popularity. 
+     */
+    function popSearchGreater(songs) {
+        document.querySelector("#popSearchGreater").addEventListener("keyup", function (e) {
+            if (e.target.nodeName == 'INPUT' && e.target) {
+                const search = e.target.value;
+                const searchPop = songs.filter(s => { return s.details.popularity > search });
+                displaySongs(searchPop);
+            }
+        });
+    }
+    function popSearchLess(songs) {
+        document.querySelector("#popSearchLess").addEventListener("keyup", function (e) {
+            if (e.target.nodeName == 'INPUT' && e.target) {
+                const search = e.target.value;
+                const searchPop = songs.filter(s => { return s.details.popularity < search });
+                displaySongs(searchPop);
+            }
+        });
     }
     /*
    * function name:genreSelected
