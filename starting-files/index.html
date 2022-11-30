@@ -19,6 +19,7 @@
 
 <body>
     <header>
+        <h1 id="welcome">Welcome To Music World</h1>
         <div class="dropdown">
             <button class="dropbtn">Credits</button>
             <div class="dropdown-content">
@@ -34,7 +35,7 @@
         </aside>
         <div class="row justify-content-md-center">
             <div class="col-4" id="aside">
-                <span class="flow-text"> Basic Search</span>
+                <span class="flow-text"> Song Search</span>
                 <form id="searchForm" action="#">
                     <div class="form-check ">
                         <input class="form-check-input" name="flexRadioDefault" id="title" type="radio" />
@@ -79,7 +80,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col col-8">
+            <div class="col col-8" id="resultPage">
                 <section id="allSongs">
                     <table class="table table-dark table-hover">
                         <thead id="allSongsTH">
@@ -96,7 +97,6 @@
                     </table>
                 </section>
             </div>
-
         </div>
         <section id="singleSong" class="hidden">
             <h2 class="text-center text-white" id="songHead"></h2>
